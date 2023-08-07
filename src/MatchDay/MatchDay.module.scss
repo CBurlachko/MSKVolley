@@ -1,0 +1,182 @@
+$primaryBGColor: #222244;
+$secondaryBGColor: #4E4E69;
+$unactiveHoverColor: #383856;
+$primaryFontColor: #EEEEDD;
+$secondaryFontColor: #222244;
+$activeFontColor: #E39652;
+
+$winnerBGColor: rgba(221, 244, 221, 0.6);
+$middleBGColor: rgba(249, 240, 199, 0.6);
+$loserBGColor: rgba(251, 223, 223, 0.6);
+
+.MainInfo{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  
+  .TeamsCard{
+    display: flex;
+    flex-direction: column;
+    background-color: lighten($primaryBGColor, 1%);
+    padding: 10px;
+    margin: 10px;
+
+    .Group{
+      font-size: 1.25rem;
+      font-weight: bold;
+      padding-left: 20px
+    }
+
+    .TeamLine{
+      display: flex;
+      flex-direction: column;
+      
+      .TeamLineInfo{
+        display: flex;
+        flex-direction: row;
+        padding-left: 20px;
+        
+        .TeamLogo{
+          display: flex;
+          align-items: center;
+          clip-path: circle(40%);
+
+          img{
+            width: 50px;
+          }
+        }
+
+        .TeamName{
+          display: flex;
+          align-items: center;
+          font-size: 1.125rem;
+          font-weight: bold;
+          padding-left: 30px;
+
+        
+          &.Winner{
+            color: $winnerBGColor;
+          }
+  
+          &.Midder{
+            color: $middleBGColor;
+          }
+  
+          &.Loser{
+            color: $loserBGColor;
+          }
+        }
+      }
+    }
+  }
+
+  .ResultsTable{
+    border: 1px solid white;
+    border-collapse: collapse;
+    margin: 10px;
+
+    tr{
+
+        &:hover{
+            box-shadow: 0px 5px 5px grey,  0px -5px 5px grey;
+        }
+        
+        .TeamLogo{
+            width: 60px;
+            height: 50px;
+            object-fit: cover;
+            text-align: center;
+            border: 1px solid white;
+
+            img{
+              width: 50px;
+              clip-path: circle(40%);
+            }
+        }
+
+        .TeamScore{
+            width: 60px;
+            height: 50px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid white;
+
+            &.Winner{
+                background-color: $winnerBGColor;
+            }
+    
+            &.Loser{
+                background-color: $loserBGColor;
+            }
+    
+            &.Middle{
+                background-color: $middleBGColor;
+            }
+        }
+    }
+  }
+
+  .InfoTable{
+    border: none;
+    margin: 10px;
+
+      tr{
+
+        td{
+          color: $primaryFontColor;
+          font-weight: bold;
+
+          &.InfoCell{
+            color: $unactiveHoverColor;
+            font-size: 0.825rem;
+            font-weight: normal;
+            padding-right: 20px;
+            text-align: end;
+          }
+
+          &.CompletenessCell{
+            color: $activeFontColor;
+          }
+        }
+      }
+  }
+
+}
+
+.TeamLists{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-top: 20px;
+  text-align: center;
+
+  .TeamList{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0 0 20px;
+
+    .TeamName{
+      color: $activeFontColor
+    }
+
+    .PlayersList{
+      display: grid;
+      grid-template-rows: auto;
+
+      .Player{
+        color: grey;
+        display: flex;
+        flex-direction: row;
+        padding: 5px;
+        
+        div{
+          padding: 0 5px 0 5px
+        }
+  
+        &.isActive{
+          color: $primaryFontColor;
+          display: flex;
+        }
+      }
+    }
+  }
+}

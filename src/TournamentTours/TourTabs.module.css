@@ -1,0 +1,40 @@
+.TournamentTabs {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.TournamentTabs ul {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  list-style-type: none;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+.TournamentTabs ul li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 30px;
+  border-radius: 30px 30px 0 0;
+  border: solid 2px #383847;
+  background-color: #1f1f2e;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.1s ease-in-out;
+}
+.TournamentTabs ul li:hover {
+  background-color: #383847;
+  height: 40px;
+}
+.TournamentTabs ul li:active {
+  background-color: #ececec;
+}
+.TournamentTabs ul li.active {
+  background-color: #383847;
+  color: #E39652;
+  height: 40px;
+}
+
+/*# sourceMappingURL=TourTabs.module.css.map */

@@ -1,0 +1,98 @@
+.AllDivsWrapper {
+  width: 100%;
+  max-width: 1230px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
+.AllDivsWrapper .DivWrapper {
+  width: 100%;
+}
+.AllDivsWrapper .DivWrapper h4 {
+  padding: 10px 0 10px 15px;
+  margin: 0 0 0 0;
+  border-radius: 0 0 5px 5px;
+  background-color: #383847;
+  width: 100%;
+}
+.AllDivsWrapper .DivWrapper .DivCards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  margin: 0 0 10px 0;
+}
+.AllDivsWrapper .DivWrapper .DivCards .GameCard {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #4e4e5c;
+  padding: 5px;
+  border-radius: 0 0 10px 10px;
+  background-color: #1f1f2e;
+}
+.AllDivsWrapper .DivWrapper .DivCards .GameCard:hover {
+  background-color: #383847;
+}
+.AllDivsWrapper .DivWrapper .DivCards .GameCard .CardHeader {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px 5px 10px;
+}
+.AllDivsWrapper .DivWrapper .DivCards .GameCard .CardHeader a {
+  text-decoration: none;
+  color: #e9e9eb;
+}
+.AllDivsWrapper .DivWrapper .DivCards .GameCard .CardHeader a:hover {
+  color: #E39652;
+}
+.AllDivsWrapper .DivWrapper .DivCards .GameCard .CardInfo {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px 5px 30px;
+}
+.AllDivsWrapper .DivWrapper .DivCards .GameCard .CardInfo .CardInfoLine {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.AllDivsWrapper .DivWrapper .DivCards .GameCard .CardInfo .CardInfoLine .TeamPosition {
+  font-size: 16px;
+  color: gray;
+}
+.AllDivsWrapper .DivWrapper .DivCards .GameCard .CardInfo .CardInfoLine .TeamName {
+  font-size: 18px;
+  margin-left: 10px;
+}
+.AllDivsWrapper .DivWrapper .DivCards .GameCard .CardInfo .CardInfoLine .TeamName a {
+  text-decoration: none;
+  color: #e9e9eb;
+}
+.AllDivsWrapper .DivWrapper .DivCards .GameCard .CardInfo .CardInfoLine .TeamName a:hover {
+  color: #E39652;
+}
+.AllDivsWrapper .DivWrapper .DivCards .GameCard .CardInfo .CardInfoLine .GamesScore {
+  justify-content: center;
+  color: white;
+  margin-left: auto;
+}
+.AllDivsWrapper .DivWrapper .DivCards .GameCard .CardStatus {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+  padding: 5px 10px 5px 10px;
+  font-size: 12px;
+}
+
+/*# sourceMappingURL=Tournament.module.css.map */

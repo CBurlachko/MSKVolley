@@ -1,0 +1,97 @@
+.GameCard {
+  width: 300px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: gray;
+  padding: 5px;
+}
+.GameCard .CardHeader {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  color: #E39652;
+  padding: 5px 10px 5px 10px;
+}
+.GameCard .CardInfo {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px 5px 30px;
+}
+.GameCard .CardInfo .CardInfoLine {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.GameCard .CardInfo .CardInfoLine .TeamPosition {
+  font-size: 16px;
+  color: gray;
+}
+.GameCard .CardInfo .CardInfoLine .TeamName {
+  font-size: 18px;
+  margin-left: 10px;
+}
+.GameCard .CardInfo .CardInfoLine .TeamName a {
+  text-decoration: none;
+  color: #EEEEDD;
+}
+.GameCard .CardInfo .CardInfoLine .TeamName a:hover {
+  color: #E39652;
+}
+.GameCard .CardInfo .CardInfoLine .GamesScore {
+  justify-content: center;
+  color: white;
+  margin-left: auto;
+}
+.GameCard .CardStatus {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 5px 10px 5px 10px;
+  font-size: 12px;
+}
+.GameCard:hover {
+  background-color: #4e4e69;
+}
+
+.TeamLists {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+.TeamLists .TeamList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px 0 0 20px;
+}
+.TeamLists .TeamList .TeamName {
+  color: #E39652;
+}
+.TeamLists .TeamList .Player {
+  color: #EEEEDD;
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+.TeamLists .TeamList .Player div {
+  padding: 0 5px 0 5px;
+}
+.TeamLists .TeamList .PlayerInactive {
+  color: grey;
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+.TeamLists .TeamList .PlayerInactive div {
+  padding: 0 5px 0 5px;
+}
+
+/*# sourceMappingURL=MatchDay.module.css.map */

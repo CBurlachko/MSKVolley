@@ -1,0 +1,64 @@
+.AllDivsWrapper {
+  width: 100%;
+  max-width: 1230px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
+.AllDivsWrapper .DivWrapper {
+  width: 100%;
+}
+.AllDivsWrapper .DivWrapper h4 {
+  padding: 10px 0 10px 15px;
+  margin: 0 0 0 0;
+  border-radius: 0 0 5px 5px;
+  background-color: #383847;
+  width: 100%;
+}
+.AllDivsWrapper .DivWrapper .DivCards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  margin: 20px 0 20px 0;
+}
+.AllDivsWrapper .DivWrapper .DivCards .TeamCard {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #1f1f2e;
+}
+.AllDivsWrapper .DivWrapper .DivCards .TeamCard:hover {
+  background-color: #383847;
+}
+.AllDivsWrapper .DivWrapper .DivCards .TeamCard a {
+  text-decoration: none;
+  color: #e9e9eb;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.AllDivsWrapper .DivWrapper .DivCards .TeamCard a:hover {
+  color: #E39652;
+}
+.AllDivsWrapper .DivWrapper .DivCards .TeamCard a img {
+  height: 160px;
+  width: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.AllDivsWrapper .DivWrapper .DivCards .TeamCard a .TeamName {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/*# sourceMappingURL=Teams.module.css.map */

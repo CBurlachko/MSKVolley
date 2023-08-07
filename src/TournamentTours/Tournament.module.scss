@@ -1,0 +1,119 @@
+$bgColorPrimary: #222233;
+$bgColorSecondary: #1f1f2e;
+$bgColorAccent: #383847;
+
+$unactiveHoverColor: #383856;
+
+$fontColorPrimary: #e9e9eb;
+$fontColorSecondary: #bdbdc2;
+$fontColorActive: #E39652;
+$fontColorInactive: #4e4e5c;
+
+$tableColorHeader: #383847;
+$tableColorSubheader: #4e4e5c;
+$tableColorEvenLine: #646470;
+
+.AllDivsWrapper {
+  width: 100%;
+  max-width: 1230px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+
+  .DivWrapper {
+    width: 100%;
+
+    h4{
+      padding: 10px 0 10px 15px;
+      margin: 0 0 0 0;
+      border-radius: 0 0 5px 5px;
+      background-color: $tableColorHeader;
+      width: 100%;
+    }
+
+    .DivCards {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(1, 1fr);
+      grid-column-gap: 10px;
+      grid-row-gap: 10px;
+      margin: 0 0 10px 0;
+
+      .GameCard {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: $fontColorInactive;
+        padding: 5px;
+        border-radius: 0 0 10px 10px;
+        background-color: $bgColorSecondary;
+
+        &:hover {
+          background-color: $bgColorAccent;
+        }
+
+        .CardHeader{
+          width: 100%;
+          height: 20%;
+          display: flex;
+          align-items: center;
+          padding: 5px 10px 5px 10px;
+          font-weight: bold;
+        }
+
+        .CardInfo{
+          width: 100%;
+          height: 70%;
+          display: flex;
+          flex-direction: column;
+          padding: 5px 10px 5px 30px;
+
+          .CardInfoLine{
+            width: 100%;
+            height: 100%;
+            display: flex;
+
+            .TeamPosition {
+              font-size: 16px;
+              color: gray;
+            }
+
+            .TeamName {
+              font-size: 18px;
+              margin-left: 10px;
+
+              a {
+                text-decoration: none;
+                color: $fontColorPrimary;
+
+                &:hover {
+                  color: $fontColorActive;
+                }
+              }
+            }
+            .GamesScore {
+              justify-content: center;
+              color: white;
+              margin-left: auto;
+            }
+          }
+        }
+        .CardStatus{
+          display: flex;
+          justify-content: right;
+          align-items: center;
+
+          width: 100%;
+          height: 10%;
+          padding: 5px 10px 5px 10px;
+
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

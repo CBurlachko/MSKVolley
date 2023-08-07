@@ -1,0 +1,116 @@
+/* Colors Palette */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.App {
+  overflow: auto;
+  width: 100%;
+  min-height: 100vh;
+  min-width: 1250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #222233;
+  color: #e9e9eb;
+}
+.App .Header {
+  min-width: 1230px;
+  height: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+.App .Header .TopCap {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  height: 100px;
+  align-items: center;
+  margin-left: 5rem;
+}
+.App .Header .TopCap .Icon {
+  height: 5rem;
+  width: 5rem;
+  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+.App .Header .TopCap .MVL {
+  color: #e9e9eb;
+  font-size: 1.25rem;
+}
+.App .Header .NavBar {
+  height: 80px;
+  width: 50%;
+  display: flex;
+}
+.App .Header .NavBar .ButtonWrap {
+  position: relative;
+  display: inline-block;
+  width: 25%;
+}
+.App .Header .NavBar .ButtonWrap button {
+  font-size: 20px;
+  height: 100%;
+  width: 100%;
+  color: #e9e9eb;
+  background-color: #222233;
+  border: 1px solid #1f1f2e;
+  cursor: pointer;
+}
+.App .Header .NavBar .ButtonWrap button:hover {
+  background: #383856;
+}
+.App .Header .NavBar .ButtonWrap button:hover:last-child {
+  color: #E39652;
+}
+.App .Header .NavBar .ButtonWrap button:active {
+  background: #383856;
+}
+.App .Header .NavBar .ButtonWrap .DropDownContent {
+  display: none;
+  position: absolute;
+  background-color: #1f1f2e;
+  min-width: 160px;
+  z-index: 1;
+}
+.App .Header .NavBar .ButtonWrap .DropDownContent a {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  color: #e9e9eb;
+}
+.App .Header .NavBar .ButtonWrap .DropDownContent a:hover {
+  color: #E39652;
+}
+.App .Header .NavBar .ButtonWrap:hover .DropDownContent {
+  display: block;
+}
+.App .Content {
+  display: flex;
+  flex-direction: column;
+  min-width: 1230px;
+  min-height: 70vh;
+  padding: 20px 0 20px 0;
+}
+.App .Footer {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 2px solid #1f1f2e;
+  background-color: #222233;
+  color: #e9e9eb;
+}
+
+/*# sourceMappingURL=App.module.css.map */

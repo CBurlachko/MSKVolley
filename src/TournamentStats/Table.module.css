@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Switching tours logic */
+.TableTabs > input,
+.TableTabs .TourTabContent > div {
+  display: none;
+}
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.TableTabs {
+  width: 100%;
+  max-width: 1230px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.TableTabs .TourTabContent {
+  clear: both;
+  width: 100%;
+  min-height: 200px;
+  border: 2px solid #383847;
+  border-collapse: collapse;
+}
+.TableTabs .TourTabContent table {
+  width: 100%;
+}
+.TableTabs .TourTabContent thead {
+  background-color: #383847;
+  border: 0;
+}
+.TableTabs .TourTabContent thead tr {
+  border: none;
+  background-color: #383847;
+}
+.TableTabs .TourTabContent thead tr th {
+  border-bottom: 2px solid #383847;
+  background-color: #383847;
+  text-align: center;
+  font-weight: bold;
+  min-width: 20px;
+  height: 2.5rem;
+}
+.TableTabs .TourTabContent thead tr th button {
+  border: none;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  color: #bdbdc2;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.TableTabs .TourTabContent thead tr th button:hover {
+  color: #E39652;
+}
+.TableTabs .TourTabContent thead tr th:not(:last-child) {
+  border-right: 1px solid #383847;
+}
+.TableTabs .TourTabContent tbody tr td {
+  text-align: center;
+  min-width: 3rem;
+  height: 2.5rem;
+}
+.TableTabs .TourTabContent tbody tr td:not(:last-child) {
+  border-right: 1px solid #383847;
+}
+.TableTabs .TourTabContent tbody tr:not(:first-child) td {
+  border-top: 1px solid #383847;
+}
+.TableTabs .TourTabContent tbody tr:nth-child(3n+4) td {
+  border-top: 4px solid #383847;
+}
+.TableTabs .TourTabContent tbody tr:hover {
+  background: #383847;
+}
+.TableTabs .TourTabContent tbody .Position {
+  width: 5%;
+}
+.TableTabs .TourTabContent tbody .Team {
+  width: 35%;
+  text-align: left;
+  padding-left: 20px;
+}
+.TableTabs .TourTabContent tbody .Team a {
+  text-decoration: none;
+  color: #e9e9eb;
+}
+.TableTabs .TourTabContent tbody .Team a:hover {
+  color: #E39652;
+}
+.TableTabs .TourTabContent tbody .Team img {
+  height: 24px;
+  width: 24px;
+}
+.TableTabs .TourTabContent tbody .Score,
+.TableTabs .TourTabContent tbody .Games,
+.TableTabs .TourTabContent tbody .Sets,
+.TableTabs .TourTabContent tbody .Division {
+  width: 15%;
+}
+
+/*# sourceMappingURL=Table.module.css.map */
