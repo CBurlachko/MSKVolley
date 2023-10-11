@@ -1,0 +1,133 @@
+Страница матча для Match_Page       - Matches_t(1-10)   OK
+Страница команды для Team_Page      - Stats             OK
+Страница всех команд для Teams_Page - Stats             OK
+Страница тура для Tournaments       - Main_t(1-10)      OK
+Страница статистики для Statistics  - Stats             OK
+
+
+                               <-----===== Stats.json =====----->
+ID команды уникальный для всего чемпионата (например, микс 2022-2023)
+Дивизион команды для Teams_Page определяется по последнему туру чемпионата во время чтения турнира.
+Дивизион, позиция в чемпионате, выигранные и проигранные партии, сыгранные матчи и очки задаются массивами по турам.
+Позиция в чемпионате зависит от дивизиона и количества очков (т.к. группы в конце миксуются)
+Поле matches содержит MatchID, в которых участвовала команда
+Для игроков считаются игры, в которых они участвовали, количество званий лучшего игрока.
+Ключом перехода на Team_Page является id.
+
+TEAMS = [
+  { id: 0, name: "Дикие и дерзкие", logo: "https://mskvolley.ru/mediafiles/teams_logo/...", 
+    div:     ["Высший дивизион", "Высший дивизион", ...],
+    matches: [1, 28, ...],
+    pos:     [1, 1, ...], 
+    win:     [4, 4, ...], 
+    lose:    [0, 0, ...], 
+    games:   [2, 4, ...], 
+    points:  [9, 18, ...],
+    players: [
+        {name: "Ветров Олег Гелиевич", games: 10, mvp: 2, logo: "https://mskvolley.ru/mediafiles/..."},
+        {name: "Петров Петр Иванович", games: 10, mvp: 0, logo: "https://mskvolley.ru/mediafiles/..."},
+        {name: "Иванов Иван Иванович", games: 10, mvp: 1, logo: "https://mskvolley.ru/mediafiles/..."},
+        ...
+    ]
+     },
+  { id: 1, name: "Буйволы на цепи", logo: "https://mskvolley.ru/mediafiles/teams_logo/...", 
+    div:     ["Высший дивизион", "Высший дивизион", ...],
+    matches: [1, 28, ...] 
+    pos:     [1, 1, ...], 
+    win:     [4, 4, ...], 
+    lose:    [0, 0, ...], 
+    games:   [2, 4, ...], 
+    points:  [9, 18, ...],
+    players: [
+        {name: "Иванов Иван Иванович", games: 10, mvp: 0, logo: "https://mskvolley.ru/mediafiles/..."},
+        {name: "Петров Петр Иванович", games: 10, mvp: 2, logo: "https://mskvolley.ru/mediafiles/..."},
+        {name: "Ветров Олег Гелиевич", games: 10, mvp: 0, logo: "https://mskvolley.ru/mediafiles/..."},
+        ...
+    ]
+     },
+  { id: 2, name: "Супер-пупер-тим", logo: "https://mskvolley.ru/mediafiles/teams_logo/...", 
+    div:     ["Высший дивизион", "Высший дивизион", ...],
+    matches: [1, 29, ...] 
+    pos:     [1, 1, ...], 
+    win:     [4, 4, ...], 
+    lose:    [0, 0, ...], 
+    games:   [2, 4, ...], 
+    points:  [9, 18, ...],
+    players: [
+        {name: "Ветров Олег Гелиевич", games: 10, mvp: 3, logo: "https://mskvolley.ru/mediafiles/..."},
+        {name: "Петров Петр Иванович", games: 10, mvp: 3, logo: "https://mskvolley.ru/mediafiles/..."},
+        {name: "Иванов Иван Иванович", games: 10, mvp: 3, logo: "https://mskvolley.ru/mediafiles/..."},
+        ...
+    ]
+     }
+  ...
+]
+
+                               <-----===== Main_t1.json =====----->
+Ключами перехода на Match_Page и Team_Page соответственно являются MatchID и id.
+
+TOURPAGE = [
+  {
+    division: "Высший дивизион",
+    groups: [
+      { name: "ГРУППА A", matchID: 14,
+        "teams": [
+          { name: "Дикие и дерзкие", id: 16, pos: 1, score: "(2:0) (2:0)" },
+          { name: "Буйволы на цепи", id: 18, pos: 2, score: "(0:2) (2:0)" },
+          { name: "Супер-Пупер-Тим", id: 10, pos: 3, score: "(0:2) (0:2)" },
+        ]
+      },
+      { name: "ГРУППА B", matchID: 15,
+        "teams": [
+          { name: "Отвязные щенки!", id: 15, pos: 1, score: "(2:0) (2:0)" },
+          { name: "Кому-то кого-то", id: 19, pos: 2, score: "(0:2) (2:1)" },
+          { name: "Сильная Команда", id: 22, pos: 3, score: "(0:2) (1:2)" },
+        ]
+      },
+      {},
+      {}
+    ]
+  },
+]
+                               <-----===== Matches_t1.json =====----->
+ID матча уникальный для всего чемпионата (например, микс 2022-2023)
+ID команды уникальный для всего чемпионата (например, микс 2022-2023)
+
+MATCHPAGE = {
+  id: 103,                // <--- Уникальный идентификатор матча
+  div: "Высший дивизион", // <--- Дивизион, в котором проходил матч
+  group: "Группа В",      // <--- Группа, в которой проходил матч
+
+  results: [
+    [['25:18', '25:19'], ['25:20', '20:25', '15:10']],
+    [['18:25', '19:25'], ['25:15', '25:10']],
+    [['20:25', '25:20', '10:15'], ['15:25', '10:25']],
+  ]
+
+  status: "подтверждены результаты",  // <--- Текущий статус матча. 
+  tournament: "Микс 2022-2023",       // <--- Турнир, в котором проходит матч. Лучше собрать самостоятельно.
+  date: "15-04-2023",                 // <--- Дата проведения матча. Перевести к UTC.
+  time: "10:00-13:00",                // <--- Время проведения матча. Перевести к UTC.
+  place: "Волгоградский проспект",    // <--- Место проведения матча.
+
+  teams: [
+    {id: 999, name: "Сосущие сосунки",          logo: "https://mskvolley.ru/mediafiles/...", players: [
+        {name: "Аннушкин Влад Александрович",   active: true,  mvp: 2, logo: "https://mskvolley.ru/mediafiles/..."},
+        {name: "Щербакова Диана Александровна", active: true,  mvp: 0, logo: "https://mskvolley.ru/mediafiles/..."},
+        {name: "Илназаров Муиз Шанбиевич",      active: true,  mvp: 0, logo: "https://mskvolley.ru/mediafiles/..."},
+        ...
+    ]}
+    {id: 102, name: "Щенки преисподней",        logo: "https://mskvolley.ru/mediafiles/...", players: [
+        {name: "Аннушкин Влад Александрович",   active: true,  mvp: 1, logo: "https://mskvolley.ru/mediafiles/..."},
+        {name: "Щербакова Диана Александровна", active: true,  mvp: 0, logo: "https://mskvolley.ru/mediafiles/..."},
+        {name: "Илназаров Муиз Шанбиевич",      active: false, mvp: 0, logo: "https://mskvolley.ru/mediafiles/..."},
+        ...
+    ]}
+    {id: 10, name: "Соблазнительный эмбрион",   logo: "https://mskvolley.ru/mediafiles/...", players: [
+        {name: "Аннушкин Влад Александрович",   active: true,  mvp: 1, logo: "https://mskvolley.ru/mediafiles/..."},
+        {name: "Щербакова Диана Александровна", active: false, mvp: 0, logo: "https://mskvolley.ru/mediafiles/..."},
+        {name: "Илназаров Муиз Шанбиевич",      active: true,  mvp: 1, logo: "https://mskvolley.ru/mediafiles/..."},
+        ...
+    ]}
+  ]
+}

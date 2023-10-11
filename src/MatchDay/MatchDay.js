@@ -1,8 +1,4 @@
 import React from "react"
-import { Link } from 'react-router-dom';
-
-import styles from "./MatchDay.module.scss";
-
 
 import MatchDayResults from "./MatchDayResults"
 import MatchDayTeams from "./MatchDayTeams"
@@ -10,23 +6,46 @@ import MatchDayInfo from "./MatchDayInfo"
 import MatchDayTeamList from "./MatchDayTeamList"
 
 
-const MatchDayPage = ({ value }) => {
-    if (!value) return(<></>)
+const MatchDayPage = ({ matchPage, onTeamPick }) => {
+    const [highlightedCell, setHighlightedCell] = React.useState({row: -5, col: -5})
+    const [teamListSpoilers, setTeamListspoilers] = React.useState(new Array(matchPage.teams.length).fill(true));
 
-    console.log(value, 'Matchday value')
-
+    if (!matchPage) return(<></>)
     return(
         <>
-            <div className={styles.MainInfo}>
-                <MatchDayTeams teams={value.content.teams} group={value.content.group}/>
-                <MatchDayResults teams={value.content.teams}/>
-                <MatchDayInfo />
+            <div className="MainInfo">
+                <MatchDayTeams 
+                    teams={matchPage.teams} 
+                    group={matchPage.group}
+                    onTeamPick = {onTeamPick}
+                />
+                <MatchDayResults 
+                    teams={matchPage.teams}
+                    results={matchPage.results}
+                    hl={highlightedCell}
+                    newHighlightedCell={(e) => setHighlightedCell(e)}
+                    onTeamPick = {onTeamPick}
+                />
+                <MatchDayInfo 
+                    info = {{
+                        status: matchPage.status,
+                        tournament: matchPage.tournament,
+                        date: matchPage.date,
+                        time: matchPage.time,
+                        place: matchPage.place,
+                    }}
+                />
             </div>
             
-            <div className={styles.TeamLists}>
-                {value.content.teams.map((_,index) => {
+            <div className="TeamLists" >
+                {matchPage.teams.map((_,index) => {
                     return(
-                       <MatchDayTeamList team={value.content.teams[index]} games={[...value.content.games]}/> 
+                        <MatchDayTeamList 
+                            team={matchPage.teams[index]}
+                            hidden={teamListSpoilers[index]}
+                            toggleSpoiler={(e) => setTeamListspoilers(teamListSpoilers.map((el, toggleIndex) => toggleIndex === index ? !el : el))}
+                            onTeamPick = {onTeamPick}
+                        />
                     )
                 })}
             </div>

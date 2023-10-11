@@ -65,62 +65,86 @@ body {
           font-size: 1.25rem;
       }
     }
+  }
 
-    .NavBar {
-      height: 80px;
+    .NavBar{
       width: 50%;
-      display: flex;
+      
+      
+      .Menu{
+        list-style-type: none;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+        height: 200px;
+        padding: 10px 10px 0 10px;
+        
 
-      .ButtonWrap {
-        position: relative;
-        display: inline-block;
-        width: 25%;
+        .MenuOption{
+          float: left;
+          width: 25%;
 
-        button {
-          font-size: 20px;
-          height: 100%;
-          width: 100%;
-          color: $fontColorPrimary;
-          background-color: $bgColorPrimary;
-          border: 1px solid $bgColorSecondary;
-          cursor: pointer;
-
-          &:hover {
-            background: $hoverColorActive;
-            &:last-child {
-              color: $fontColorActive;
-            }
-          }
-
-          &:active {
-            background: $hoverColorActive;
-          }
-        }
-
-        .DropDownContent{
-          display: none;
-          position: absolute;
-          background-color: $bgColorSecondary;
-          min-width: 160px;
-          z-index: 1;
-
-          a {
-            padding: 12px 16px;
-            text-decoration: none;
+          p{
             display: block;
+            padding: 10px;
+            margin: 0 5px 0 5px;
+            text-align: center;
             color: $fontColorPrimary;
+            font-size: 20px;
+            border-bottom: 1px solid white;
+          }
 
-            &:hover {
-              color: $fontColorActive;
+          .MenuDropDown{
+            background: $bgColorAccent;
+            height: 0px;
+            opacity: 0;
+            transition: 
+              .75s height ease-out,
+              .5s .2s opacity;
+            top: 35px;
+            list-style-type: none;
+            padding: 10px;
+            margin: 0 5px 0 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+
+            li{
+              
+              a{
+                color: rgb(0,0,0,0);
+                text-decoration: none;
+                transition: .25s color;
+              }
             }
+          }
+
+          &:hover .MenuDropDown {
+            height: 120px;
+            opacity: 1;
+            transform: translateY(0);
+
+            li{
+              a{
+                color: $fontColorPrimary;
+
+                &:hover{
+                  color: $fontColorActive;
+                }
+              }
+            }
+          }
+
+          a{
+            text-decoration: none;
           }
         }
 
-        &:hover .DropDownContent {
-          display: block;
-        }
+        
       }
-    }
   }
 
   .Content {

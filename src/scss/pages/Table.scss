@@ -1,0 +1,136 @@
+@import '../variables.scss';
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Switching tours logic */
+.TableTabs > input,
+.TableTabs .TourTabContent > div {
+  display: none;
+}
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.TableTabs {
+  width: 100%;
+  max-width: 1230px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  font-weight: bold;
+  font-size: 1rem;
+
+
+  .TourTabContent {
+    clear: both;
+    width: 100%;
+    min-height: 200px;
+
+    table {
+      width: 100%;
+    }
+
+    border: 2px solid $bgColorAccent;
+    border-collapse: collapse;
+
+    thead {
+      background-color: $bgColorAccent;
+      border: 0;
+
+      tr {
+        border: none;
+        background-color: $bgColorAccent;
+
+
+        th {
+          border-bottom: 2px solid $bgColorAccent;
+          background-color: $bgColorAccent;
+          text-align: center;
+          font-weight: bold;
+          min-width: 20px;
+          height: 2.5rem;
+
+          button {
+            border: none;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            color: $fontColorSecondary;
+            font-size: 1rem;
+            font-weight: bold;
+            
+
+            &:hover {
+              color: $fontColorActive;
+            }
+          }
+
+          &:not(:last-child) {
+            border-right: 1px solid $bgColorAccent;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        transition: background-color 0.3s ease-in-out;
+        
+        td {
+          text-align: center;
+          min-width: 3rem;
+          height: 2.5rem;
+          &:not(:last-child) {
+            border-right: 1px solid $bgColorAccent;
+          }
+        }
+        &:not(:first-child) td {
+          border-top: 1px solid $bgColorAccent;
+        }
+        &:nth-child(3n+4) td {
+          border-top: 4px solid $bgColorAccent;
+        }
+        &:hover {
+          background: $bgColorAccent;
+        }
+      }
+
+      .Position {
+        width: 5%;
+      }
+      .Team {
+        width: 35%;
+        text-align: left;
+        padding-left: 20px;
+
+        a {
+          text-decoration: none;
+          color: $fontColorPrimary;
+
+          &:hover {
+            color: $fontColorActive;
+          }
+        }
+
+        img {
+          height: 24px;
+          width: 24px;
+        }
+      }
+      .Score,
+      .Games,
+      .Sets,
+      .Division {
+        width: 15%;
+      }
+
+    }
+    }
+}

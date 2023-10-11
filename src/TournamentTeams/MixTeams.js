@@ -2,16 +2,16 @@ import React from "react"
 import { Link } from 'react-router-dom';
 
 import ContentLoader from "react-content-loader"
-import styles from './Teams.module.scss'
 
-import tt from '../MIX2022_TT.json'
+import teams from '../MIX_2022/Stats.json'
 import TeamCard from './TeamCard.js'
 
-
-
-// TODO: Прикрутить ссылки на реальные картинки, привести их к одному размеру
+const divisions = ["Высший дивизион", "1 дивизион", "2 дивизион", "3 дивизион", "4 дивизион", "5 дивизион", "6 дивизион"]
+teams = teams
+        .filter(team => team.div.length === 10)
+        .map(team => team = ({name: team.name, id: team.id, div: team.div.at(-1), logo: team.logo, points: team.points.at(-1)}))
+        .sort((a,b) => b.points - a.points)
 // TODO: Добавить скелетоны, пока не загружены
-
 
 const Skeleton = (props) => (
     <ContentLoader
@@ -28,41 +28,19 @@ const Skeleton = (props) => (
 )
 
 function MixTeams({onTeamPick}) {
-    const table = [];
-    for (let team of tt){
-        if (team.games.at(-1) !== 0){
-            table.push({
-                id: team.id,
-                name: team.name,
-                div: team.divs.at(-1),
-            })
-        }
-    }
-
-    table.sort((a,b) => {
-        if (a.div === "Высший" && b.div !== "Высший") return 1
-        if (a.div !== "Высший" && b.div === "Высший") return -1
-        if (a.div > b.div) return 1
-        if (a.div < b.div) return -1
-        return 0
-    })
-
-    const divList = ['Высший дивизион', '1-й дивизион', '2-й дивизион',
-                        '3-й дивизион', '4-й дивизион', '5-й дивизион']
-
     return (
-        <div className={styles.AllDivsWrapper}>
-            {divList.map(divNumber => {return (
-                <div className={styles.DivWrapper}>
+        <div className="TeamListContent">
+            {divisions.map(division => {return (
+                <div key={division}className="DivWrapper">
                     <h4>
-                        {divNumber}
+                        {division}
                     </h4>
-                    <div className={styles.DivCards}>
-                        {table
-                            .filter(value => value.div === divNumber)
+                    <div className="DivCards">
+                        {teams
+                            .filter(team => team.div === division)
                             .map(team => {
                                 return (
-                                    <TeamCard teamInfo={team} onTeamPick={onTeamPick}/>
+                                    <TeamCard key={team.id} info={team} onTeamPick={onTeamPick}/>
                                 )
                         })}
                     </div>

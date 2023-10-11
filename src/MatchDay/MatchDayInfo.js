@@ -1,29 +1,29 @@
 import React from "react"
-import styles from "./MatchDay.module.scss";
 
+// TODO: Переписать табличку на article
 
-const MatchDayInfo = ({  }) => {
+const MatchDayInfo = ({ info }) => {
     return (
-        <table className={styles.InfoTable}>
+        <table className="InfoTable">
              <tr>
-                <td className={styles.InfoCell}>{'Статус игры:'}</td>
-                <td className={styles.CompletenessCell}>{'подтверждены результаты'}</td>
+                <td className="InfoCell">{'Статус игры:'}</td>
+                <td className="CompletenessCell">{info.status}</td>
             </tr>
             <tr>
-                <td className={styles.InfoCell}>{'Турнир:'}</td>
-                <td>{'Микс 2022-2023 Тур 10'}</td>
+                <td className="InfoCell">{'Турнир:'}</td>
+                <td>{info.tournament}</td>
             </tr>
             <tr>
-                <td className={styles.InfoCell}>{'Дата:'}</td>
-                <td>{'15-04-2023'}</td>
+                <td className="InfoCell">{'Дата:'}</td>
+                <td>{info.date}</td>
             </tr>
             <tr>
-                <td className={styles.InfoCell}>{'Время:'}</td>
-                <td>{'10:00-13:00'}</td>
+                <td className="InfoCell">{'Время:'}</td>
+                <td>{info.time}</td>
             </tr>
             <tr>
-                <td className={styles.InfoCell}>{'Место:'}</td>
-                <td>{'Волгоградский проспект'}</td>
+                <td className="InfoCell">{'Место:'}</td>
+                <td>{info.place}</td>
             </tr>
         </table>
     )

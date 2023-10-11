@@ -1,16 +1,15 @@
 import React from "react"
-import styles from './TourTabs.module.scss'
 
 function TournamentTabs({ value, onClickTab}) {
 
-    const tabs = [1,2,3,4,5,6,7,8,9];
+    const tabs = [1,2,3,4,5,6,7,8,9,10];
 
     return(
-        <div className={styles.TournamentTabs}>
+        <div className="TournamentTabs">
             <ul>
-                {tabs.map(currentTab => {
+                {tabs.map((currentTab, i) => {
                     return(
-                        <li key={currentTab} onClick={() => onClickTab(currentTab)} className={value === currentTab ? styles.active : ''}>
+                        <li key={i} onClick={() => onClickTab(currentTab)} className={value === currentTab ? "active" : ''}>
                             {`${currentTab} тур`}
                         </li>
                     )

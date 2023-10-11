@@ -1,13 +1,13 @@
-$primaryBGColor: #222244;
+$primaryBGColor: #222233;
 $secondaryBGColor: #4E4E69;
 $unactiveHoverColor: #383856;
 $primaryFontColor: #EEEEDD;
 $secondaryFontColor: #222244;
 $activeFontColor: #E39652;
 
-$winnerBGColor: rgba(221, 244, 221, 0.6);
-$middleBGColor: rgba(249, 240, 199, 0.6);
-$loserBGColor: rgba(251, 223, 223, 0.6);
+$winnerBGColor: rgba(0, 130, 50, 0.7);
+$middleBGColor: rgb(130, 130, 50, 0.7);
+$loserBGColor: rgb(130, 0, 50, 0.7);
 
 .MainInfo{
   width: 100%;
@@ -15,34 +15,34 @@ $loserBGColor: rgba(251, 223, 223, 0.6);
   grid-template-columns: 1fr 1fr 1fr;
   
   .TeamsCard{
-    display: flex;
-    flex-direction: column;
-    background-color: lighten($primaryBGColor, 1%);
-    padding: 10px;
+    display: grid;
+    grid-template-rows: 1fr 3fr;
     margin: 10px;
 
     .Group{
+      display: flex;
       font-size: 1.25rem;
       font-weight: bold;
-      padding-left: 20px
+      justify-content: center;
+      align-items: center;
     }
 
     .TeamLine{
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-rows: 1fr 1fr 1fr;
       
       .TeamLineInfo{
         display: flex;
         flex-direction: row;
-        padding-left: 20px;
+        padding-left: 50px;
         
         .TeamLogo{
           display: flex;
           align-items: center;
-          clip-path: circle(40%);
 
           img{
             width: 50px;
+            clip-path: circle(40%);
           }
         }
 
@@ -52,18 +52,22 @@ $loserBGColor: rgba(251, 223, 223, 0.6);
           font-size: 1.125rem;
           font-weight: bold;
           padding-left: 30px;
-
+          opacity: .5;
         
           &.Winner{
-            color: $winnerBGColor;
+            color: lighten($winnerBGColor, 20%);
           }
   
           &.Midder{
-            color: $middleBGColor;
+            color: lighten($middleBGColor, 25%);
           }
   
           &.Loser{
-            color: $loserBGColor;
+            color: lighten($loserBGColor, 25%);
+          }
+
+          &:hover{
+            opacity: 1;
           }
         }
       }
@@ -76,11 +80,7 @@ $loserBGColor: rgba(251, 223, 223, 0.6);
     margin: 10px;
 
     tr{
-
-        &:hover{
-            box-shadow: 0px 5px 5px grey,  0px -5px 5px grey;
-        }
-        
+       
         .TeamLogo{
             width: 60px;
             height: 50px;
@@ -100,6 +100,8 @@ $loserBGColor: rgba(251, 223, 223, 0.6);
             text-align: center;
             font-weight: bold;
             border: 1px solid white;
+            opacity: .3;
+            background-color: $primaryBGColor;
 
             &.Winner{
                 background-color: $winnerBGColor;
@@ -111,6 +113,14 @@ $loserBGColor: rgba(251, 223, 223, 0.6);
     
             &.Middle{
                 background-color: $middleBGColor;
+            }
+
+            &.Highlighted{
+              opacity: 1;
+            }
+
+            &.LeftToHighlighted{
+              box-shadow: inset -5px 0 5px wheat;
             }
         }
     }
@@ -148,34 +158,84 @@ $loserBGColor: rgba(251, 223, 223, 0.6);
   grid-template-columns: 1fr 1fr 1fr;
   padding-top: 20px;
   text-align: center;
-
+  
   .TeamList{
     display: flex;
     flex-direction: column;
-    padding: 20px 0 0 20px;
-
+    margin: 20px 0 0 20px;
+    
     .TeamName{
-      color: $activeFontColor
+      color: $activeFontColor;
+      font-size: 20px;
+      border: 1px solid $secondaryBGColor;
+      border-radius: 10px;
+      margin-bottom: 20px;
     }
 
-    .PlayersList{
+    .PlayersListWrapper{
       display: grid;
-      grid-template-rows: auto;
+      grid-template-rows: 1fr;
+      transition: grid-template-rows .5s ease-out;
 
-      .Player{
-        color: grey;
+      .PlayersList{
+        overflow: hidden;
         display: flex;
-        flex-direction: row;
-        padding: 5px;
-        
-        div{
-          padding: 0 5px 0 5px
-        }
-  
-        &.isActive{
-          color: $primaryFontColor;
+        flex-direction: column;
+
+        .Player{
+          color: grey;
           display: flex;
+          flex-direction: row;
+          padding: 5px 0 5px 0;
+          align-items: center;
+          justify-content: flex-start;
+          
+          :nth-child(3){
+            margin-left: auto;
+          }
+
+          .PlayerLogo {
+            padding-right: 10px;
+            height: 50px;
+
+            img {
+                height: 50px;
+                width: 50px;
+                object-fit: cover;
+                border-radius: 50%;
+            }
         }
+                  
+          div{
+            padding: 0 5px 0 5px;
+
+            svg{
+              fill: $activeFontColor;
+            }
+          }
+    
+          &.isActive{
+            color: $primaryFontColor;
+          }
+        }
+      }
+
+      &.Hidden{
+        grid-template-rows: 0fr;
+      }
+    }
+
+    .TeamListSpoiler{
+      width: 100%;
+      height: 20px;
+      border: none;
+      background-color: $secondaryBGColor;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+
+      svg {
+        fill: lighten($secondaryBGColor, 20%);
+        transition: transform .3s linear
       }
     }
   }

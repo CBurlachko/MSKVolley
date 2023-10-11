@@ -1,103 +1,70 @@
 import React from "react"
-import styles from './Tournament.module.scss'
 import { Link } from 'react-router-dom';
-import md from '../MIX2022_MatchDays.json';
+
+import tournamentPages from '../MIX_2022/Main.json'
+import tournamentMatches from '../MIX_2022/Matches.json'
+
 import TournamentTabs from "./ToursTab";
 
-// TODO: Исправить верстку в случае группы из двух команд + в этом случае выигравшая команда выше (5 тур С5 и D5)
-// TODO: Вытащить логику из вёрстки
 // TODO: Поднять useState выбранного тура на уровень приложения
+// TODO: Найти способ динамически подгружать страницыmatchPages
 
-const MixTournament = ({ onMatchDayPick, onTeamPick }) => {
-    const [activeTab, setActiveTab] = React.useState(9);
-
-    function getTourPage (tour, matchDayDB){
-        const tourPage = []
-
-        for (let matchDay of matchDayDB){
-            if (matchDay.tour === tour){
-                const mdCard = {
-                    group: matchDay.group,
-                    status: matchDay.status,
-                    teams: [],
-                    games: [...matchDay.games]
-                }
-
-                for (let i = 0; i < matchDay.teams.length; i++) {
-                    if (matchDay.teams.length === 3) {
-                        mdCard.teams.push({
-                            pos: i+1,
-                            id: matchDay.teams[i].id,
-                            name: matchDay.teams[i].name,
-                            score: matchDay.results[i][0] + " " + matchDay.results[i][1]
-                        })
-                    } else {
-                        mdCard.teams.push({
-                            pos: i+1,
-                            id: matchDay.teams[i].id,
-                            name: matchDay.teams[i].name,
-                            score: matchDay.results[i][0]
-                        })
-                    }
-                }
-
-                let mdCardDiv = mdCard.group.replace(/\D/ig, "")
-                mdCardDiv = mdCardDiv === "" ? 0 : Number(mdCardDiv)
-
-                if (tourPage.length < mdCardDiv + 1){
-                    tourPage.push({
-                        div: mdCardDiv === 0 ? "Высший дивизион" : mdCardDiv + "-й дивизион",
-                        content: []
-                    })
-                }
-                tourPage[mdCardDiv].content.push(mdCard)
-
-            }
-        }
-
-        while (tourPage.at(-1).content.length === 0) tourPage.pop()
-
-        return tourPage
+const getMatchPage = (id) => {
+    for (let match of matchPage) {
+        if (match.id === id) return match;
     }
+    return matchPage[0];
+}
 
-    const tourPage = getTourPage(activeTab, md)
+let tourPage = tournamentPages.at(-1)
+let matchPage = tournamentMatches.at(-1)
+const MixTournament = ({ onMatchDayPick, onTeamPick }) => {
+    const [activeTab, setActiveTab] = React.useState(10);
+
+    const tabPicker = (tour) => {
+        setActiveTab(tour);
+        tourPage = tournamentPages[tour - 1]
+        matchPage = tournamentMatches[tour - 1]
+    }
 
     return(
         <div>
-            <TournamentTabs value={activeTab} onClickTab={(currentTab) => setActiveTab(currentTab)}/>
-
-            <div className={styles.AllDivsWrapper}>
-                {[...tourPage].map(elem => {
+            <TournamentTabs 
+                value={activeTab} 
+                onClickTab={(currentTab) => tabPicker(currentTab)}
+            />
+            <div className="TournamentTourContent">
+                {[...tourPage].map((page, pageIdx) => {
                     return(
-                        <div className={styles.DivWrapper}>
-                            <h4>{elem.div}</h4>
-                            <div className={styles.DivCards}>
-                                {[...elem.content].map(content => {
+                        <div key={pageIdx} className="DivWrapper">
+                            <h4>{page.division}</h4>
+                            <div className="DivCards">
+                                {[...page.groups].map((group, groupIdx) => {
                                     return (
-                                        <Link to="/match-day" style={{ textDecoration: 'none' }}>
+                                        <Link to="/match-day" key={groupIdx} style={{ textDecoration: 'none' }}>
                                             <div 
-                                                className={styles.GameCard}
-                                                onClick={() => onMatchDayPick({tour: activeTab, content: content})} 
+                                                className="GameCard"
+                                                onClick={() => onMatchDayPick(getMatchPage(group.matchID))}
                                             >
-                                                <div className={styles.CardHeader} >
-                                                        {content.group}
+                                                <div className="CardHeader">
+                                                        {group.name}
                                                 </div>
-                                                <div className={styles.CardInfo}>
-                                                    {[...content.teams].map(team => {
+                                                <div className="CardInfo">
+                                                    {[...group.teams].map((team, teamIdx) => {
                                                         return (
-                                                            <div className={styles.CardInfoLine}>
-                                                                <div className={styles.TeamPosition}>
+                                                            <div key={teamIdx} className="CardInfoLine">
+                                                                <div className="TeamPosition">
                                                                     {team.pos}
                                                                 </div>
                                                                     <div 
-                                                                        className={styles.TeamName}
+                                                                        className="TeamName"
                                                                         onClick={() => onTeamPick(team.id)}
                                                                     >
                                                                     <Link to="/team-page" style={{ textDecoration: 'none' }}>
                                                                         {team.name}
                                                                     </Link>
                                                                 </div>
-                                                                <div className={styles.GamesScore}>
+                                                                <div className="GamesScore">
                                                                     {team.score}
                                                                 </div>
                                                             </div>
@@ -105,8 +72,8 @@ const MixTournament = ({ onMatchDayPick, onTeamPick }) => {
                                                     })
                                                     }
                                                 </div>
-                                                <div className={styles.CardStatus}>
-                                                    {elem.status}
+                                                <div className="CardStatus">
+                                                    {group.status}
                                                 </div>
                                             </div>
                                         </Link>

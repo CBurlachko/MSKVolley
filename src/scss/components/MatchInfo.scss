@@ -1,0 +1,26 @@
+@import '../variables.scss';
+
+.InfoTable{
+    border: none;
+    margin: 10px;
+
+      tr{
+
+        td{
+          color: $fontColorPrimary;
+          font-weight: bold;
+
+          &.InfoCell{
+            color: $hoverColorActive;
+            font-size: 0.825rem;
+            font-weight: normal;
+            padding-right: 20px;
+            text-align: end;
+          }
+
+          &.CompletenessCell{
+            color: $fontColorActive;
+          }
+        }
+      }
+  }

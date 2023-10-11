@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 
-import styles from './Table.module.scss'
+import stats from '../MIX_2022/Stats.json'
 
-import tt from '../MIX2022_TT.json';
 import TournamentTabs from "../TournamentTours/ToursTab";
 
 // TODO: Проверить корректность подсчёта очков (учитывая х3 для высшего...)
@@ -14,9 +13,31 @@ import TournamentTabs from "../TournamentTours/ToursTab";
 // TODO: Проверить сортировку по Div'ам
 // TODO: Вёрстка
 
+function createStatsTab(tour) {
+    const statsTab = []
+    stats
+        .filter(team => team.div.length >= tour)
+        .filter(team => team.div[tour - 1] !== "")
+        .map(team => {
+            statsTab.push({
+                name: team.name,
+                id: team.id,
+                div: team.div[tour - 1],
+                win: team.win[tour - 1],
+                lose: team.lose[tour - 1],
+                games: team.games[tour - 1],
+                points: team.points[tour - 1],
+                pos: team.pos[tour - 1],
+            })
+        })
+    return statsTab
+}
+
+let statsTab = createStatsTab(10)
+
 const MixStats = ({onTeamPick}) => {
-    const [activeTab, setActiveTab] = useState(tt[0].games.length)    // Выбираем активным последний тур
-    const [sortedField, setSortedField] = useState({ key: "divs", direction: "descending" })
+    const [activeTab, setActiveTab] = useState(10)    // Выбираем активным последний тур
+    const [sortedField, setSortedField] = useState({ key: "position", direction: "ascending" })
 
     const requestSort = key => {
         let direction = 'ascending';
@@ -25,28 +46,18 @@ const MixStats = ({onTeamPick}) => {
         }
         setSortedField({ key, direction });
     }
-
-    const table = [];
-    let teamID = 0;
-    for (let team of tt){
-        if (team.games[activeTab-1] !== 0){
-            teamID++;
-            table.push({
-                id: teamID,
-                name: team.name,
-                games: team.games[activeTab-1],
-                divs: team.divs[activeTab-1],
-                sets: team.sets[activeTab-1],
-                points: team.points[activeTab-1]
-            })
-        }
+    const tabPicker = (tour) => {
+        setActiveTab(tour)
+        statsTab = createStatsTab(tour)
     }
+    
+
 
     switch (sortedField.key) {
         case "name":
         case "points":
         case "games":
-            table.sort((a, b) => {
+            statsTab.sort((a, b) => {
                 if (a[sortedField.key] > b[sortedField.key]) {
                     return sortedField.direction === 'ascending' ? -1 : 1;
                 }
@@ -57,30 +68,36 @@ const MixStats = ({onTeamPick}) => {
             })
             break
         case "sets":
-            table.sort((a, b) => {
-                if (a.sets.slice(0, a.sets.indexOf(":")) - a.sets.slice(a.sets.indexOf(":")+1, a.sets.length) >
-                    b.sets.slice(0, b.sets.indexOf(":")) - b.sets.slice(b.sets.indexOf(":")+1, b.sets.length)) {
+            statsTab.sort((a, b) => {
+                if ((a.win - a.lose) / a.games === (b.win - b.lose) / b.games) {
+                    if (a.games > b.games) {
+                        return sortedField.direction === 'ascending' ? -1 : 1;
+                    } else {
+                        return sortedField.direction === 'ascending' ? 1 : -1;
+                    }
+                }
+                if ((a.win - a.lose) / a.games > (b.win - b.lose) / b.games) {
                     return sortedField.direction === 'ascending' ? -1 : 1;
                 }
-                if (a.sets.slice(0, a.sets.indexOf(":")) - a.sets.slice(a.sets.indexOf(":")+1, a.sets.length) >
-                    b.sets.slice(0, b.sets.indexOf(":")) - b.sets.slice(b.sets.indexOf(":")+1, b.sets.length)) {
+                if ((a.win - a.lose) / a.games < (b.win - b.lose) / b.games) {
                     return sortedField.direction === 'ascending' ? 1 : -1;
                 }
                 return 0
             })
-            break
-        case "divs":
-            table.sort((a, b) => {
-                if (a.divs.includes("Высший") && !b.divs.includes("Высший")) {
+                break
+        case "div":
+        default:
+            statsTab.sort((a, b) => {
+                if (a.div === "Высший дивизион" && b.div !== "Высший дивизион") {
+                    return sortedField.direction === 'ascending' ? -1 : 1;
+                }
+                if (a.div !== "Высший дивизион" && b.div === "Высший дивизион") {
                     return sortedField.direction === 'ascending' ? 1 : -1;
                 }
-                if (!a.divs.includes("Высший") && b.divs.includes("Высший")) {
+                if (a.div < b.div) {
                     return sortedField.direction === 'ascending' ? -1 : 1;
                 }
-                if (a.divs > b.divs && !a.divs.includes("Высший") && !a.divs.includes("Высший") ) {
-                    return sortedField.direction === 'ascending' ? -1 : 1;
-                }
-                if (a.divs < b.divs && !a.divs.includes("Высший") && !a.divs.includes("Высший") ) {
+                if (a.div > b.div) {
                     return sortedField.direction === 'ascending' ? 1 : -1;
                 }
                 return 0
@@ -90,10 +107,10 @@ const MixStats = ({onTeamPick}) => {
 
 
     return (
-        <div className={styles.TableTabs}>
-            <TournamentTabs value={activeTab} onClickTab={(currentTab) => setActiveTab(currentTab)}/>
+        <div className="TableTabs">
+            <TournamentTabs value={activeTab} onClickTab={(currentTab) => tabPicker(currentTab)}/>
 
-            <div className={styles.TourTabContent}>
+            <div className="TourTabContent">
                 <table>
                     <thead>
                         <tr>
@@ -103,7 +120,7 @@ const MixStats = ({onTeamPick}) => {
                                 </button>
                             </th>
                             <th>
-                                <button type="button" onClick={() => requestSort('divs')}>
+                                <button type="button" onClick={() => requestSort('div')}>
                                     Дивизион
                                 </button>
                             </th>
@@ -125,27 +142,27 @@ const MixStats = ({onTeamPick}) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {table.map((team, index) => {
+                        {statsTab.map((team, index) => {
                             return (
                                 <tr key={index}>
-                                    <td className={styles.Position}>
+                                    <td className="Position">
                                         <p>{index + 1}</p>
                                     </td>
-                                    <td onClick={() => onTeamPick(team.id)} className={styles.Team}>
+                                    <td onClick={() => onTeamPick(team.id)} className="Team">
                                         <Link to="/team-page">
                                             <p>{team.name}</p>
                                         </Link>
                                     </td>
-                                    <td className={styles.Division}>
-                                        <p>{team.divs}</p>
+                                    <td className="Division">
+                                        <p>{team.div}</p>
                                     </td>
-                                    <td className={styles.Games}>
+                                    <td className="Games">
                                         <p>{team.games}</p>
                                     </td>
-                                    <td className={styles.Sets}>
-                                        <p>{team.sets}</p>
+                                    <td className="Sets">
+                                        <p>{team.win+'-'+team.lose}</p>
                                     </td>
-                                    <td className={styles.Score}>
+                                    <td className="Score">
                                         <p>{team.points}</p>
                                     </td>
                                 </tr>

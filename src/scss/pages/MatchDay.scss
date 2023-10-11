@@ -1,0 +1,120 @@
+@import '../variables.scss';
+
+.MainInfo{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  
+  .TeamsCard{
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+    margin: 10px;
+
+    .Group{
+      display: flex;
+      font-size: 1.25rem;
+      font-weight: bold;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .TeamLine{
+      display: grid;
+      grid-template-rows: 1fr 1fr 1fr;
+      
+      .TeamLineInfo{
+        display: flex;
+        flex-direction: row;
+        padding-left: 50px;
+        
+        .TeamLogo{
+          display: flex;
+          align-items: center;
+
+          img{
+            width: 50px;
+            clip-path: circle(40%);
+          }
+        }
+
+        .TeamName{
+          display: flex;
+          align-items: center;
+          font-size: 1.125rem;
+          font-weight: bold;
+          padding-left: 30px;
+          opacity: .5;
+        
+          &.Winner{
+            color: lighten($winnerBGColor, 20%);
+          }
+  
+          &.Midder{
+            color: lighten($middleBGColor, 25%);
+          }
+  
+          &.Loser{
+            color: lighten($loserBGColor, 25%);
+          }
+
+          &:hover{
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  .ResultsTable{
+    border: 1px solid white;
+    border-collapse: collapse;
+    margin: 10px;
+
+    tr{
+       
+        .TeamLogo{
+            width: 60px;
+            height: 50px;
+            object-fit: cover;
+            text-align: center;
+            border: 1px solid white;
+
+            img{
+              width: 50px;
+              clip-path: circle(40%);
+            }
+        }
+
+        .TeamScore{
+            width: 60px;
+            height: 50px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid white;
+            opacity: .3;
+            background-color: $bgColorPrimary;
+
+            &.Winner{
+                background-color: $winnerBGColor;
+            }
+    
+            &.Loser{
+                background-color: $loserBGColor;
+            }
+    
+            &.Middle{
+                background-color: $middleBGColor;
+            }
+
+            &.Highlighted{
+              opacity: 1;
+            }
+
+            &.LeftToHighlighted{
+              box-shadow: inset -5px 0 5px wheat;
+            }
+        }
+    }
+  }
+
+}
