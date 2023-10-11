@@ -1,8 +1,8 @@
 import React from "react"
 import { Link } from 'react-router-dom';
 
-import tournamentPages from '../MIX_2022/Main.json'
-import tournamentMatches from '../MIX_2022/Matches.json'
+import tournamentPages from '../../public/MIX_2022/Main.json'
+import tournamentMatches from '../../public/MIX_2022/Matches.json'
 
 import TournamentTabs from "./ToursTab";
 

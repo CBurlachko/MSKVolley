@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 
-import stats from '../MIX_2022/Stats.json'
+import stats from '../../public/MIX_2022/Stats.json'
 
 import TournamentTabs from "../TournamentTours/ToursTab";
 

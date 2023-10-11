@@ -3,7 +3,7 @@ import { Routes, Route, Link } from "react-router-dom";
 
 import "./scss/app.scss";
 
-import teamInfo from './MIX_2022/Stats.json';
+import teamInfo from '../../public/MIX_2022/Stats.json'
 
 import MixTournament from "./TournamentTours/MixTournament";
 import MixTeams from "./TournamentTeams/MixTeams";
