@@ -5,10 +5,7 @@ import TeamStats from "./TeamStats";
 import TeamList from "./TeamList";
 import TeamInfo  from "./TeamInfo";
 
-// TODO: Отслеживать технические поражения
-// TODO: Выделить компонент с историей матчей
-// TODO: Написать кастомный хук под изменение списков в выбранной игре
-// TODO: Вытащить MVP из общего списка
+// TODO: Выделение жирным при наведении в инфо и статистике.
 
 const TeamPage = ({ teamInfo, onTeamPick }) => {
     console.log(teamInfo)

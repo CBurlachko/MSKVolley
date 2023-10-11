@@ -1,0 +1,49 @@
+@import '../variables.scss';
+
+.TeamStatistics { 
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    margin: 5px;
+    background-color: $bgColorSecondary;
+    border: 2px solid $bgColorAccent;
+    border-radius: 10px;
+
+    section {
+        padding-top: 50px;
+        width: 100%;
+
+        header {
+            font-size: 30px;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+
+        article {
+            display: flex;
+            justify-content: center;
+
+            table {
+                border: none;
+                border-spacing: 0px;
+
+                tr {
+                    line-height: 30px;
+                }
+
+                th {
+                    text-align: left;
+                }
+
+                td {
+                    padding: 0px 10px 0px 30px;
+                    width: 150px;
+                }
+                tr:hover {
+                    background-color: $bgColorAccent;
+                }
+            }  
+        }
+    }
+
+}

@@ -1,0 +1,83 @@
+@import '../variables.scss';
+
+.TeamList {
+    display: flex;
+    flex-direction: column;
+    
+    .PlayersList{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+        .PlayerCard{
+            color: $fontColorPrimary;
+            display: flex;
+            flex-direction: column;
+            padding: 5px 0 5px 0;
+            align-items: center;
+            justify-content: center;
+            background-color: $bgColorSecondary;
+            border: 2px solid $bgColorAccent;
+            border-radius: 10px;
+            margin: 5px;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            overflow: hidden;
+            
+            img {
+                height: 150px;
+                width: 150px;
+                object-fit: cover;
+                border-radius: 50%;
+                margin: 10px;
+            }
+
+            .PlayerInfo {
+                position: relative;
+                left: 0;
+                bottom: -18%;
+                width: 100%;
+                text-align: center;
+                transition: bottom 0.3s ease-in-out;
+
+                h4 {
+                    padding-bottom: 20px;
+                }
+
+                ul {
+                    margin: 0 0 10px;
+                    padding: 0px;
+                    list-style: none;
+                    width: 100%;
+
+                    li {
+                        float: left;
+                        font-size: 15px;
+                        font-weight: 300;
+                        border-right: 1px solid rgba(255,255,255,.5);
+                        width: 50%;
+                        line-height: 20px;
+                        display: flex;
+                        flex-direction: column;
+
+                    }
+
+                    li:last-child {
+                        border: 0px;
+                    }
+                }
+            }
+            
+            &:hover {
+                background-color: $bgColorAccent;
+                color: $fontColorActive;
+
+                .PlayerInfo {
+                    bottom: 0px;
+                }
+            }
+        }
+
+        .Inactive {
+            color: $fontColorInactive;
+        }
+    }
+}

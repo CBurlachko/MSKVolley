@@ -1,0 +1,54 @@
+@import '../variables.scss';
+
+.TeamBriefInformation { 
+    display: flex;
+    padding: 0 20px 0 20px;
+    align-items: start;
+    justify-content: center;
+    margin: 5px;
+    background-color: $bgColorSecondary;
+    border: 2px solid $bgColorAccent;
+    border-radius: 10px;
+                
+    section {
+        padding-top: 50px;
+        header {
+            font-size: 30px;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+
+        tr {
+            line-height: 30px;
+        }
+
+        th {
+            text-align: left;
+        }
+
+        td {
+            padding-left: 30px;
+        }
+
+        .TeamCondition {
+            svg {
+                max-height: 20px;
+                margin: 3px;
+                cursor: default;
+            }
+            .Win {
+                fill: $winnerBGColor;
+            }
+            .Lose {
+                fill: $loserBGColor;
+            }
+            .Hold {
+                fill: $middleBGColor;
+            }
+            .TechLose {
+                fill: $loserBGColor;
+            }
+        }
+    }
+
+}

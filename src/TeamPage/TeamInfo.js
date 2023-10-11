@@ -41,7 +41,7 @@ const TeamInfo = ({teamInfo}) => {
                         </tr>
                         <tr>
                             <th>{'Позиция'}</th>
-                            <td>{lastActualPos(teamInfo.pos)}</td>
+                            <td>{lastActualPos(teamInfo.pos) + 1}</td>
                         </tr>
                         <tr>
                             <th>{'Очки'}</th>
