@@ -11,7 +11,8 @@ import TournamentTabs from "../TournamentTours/ToursTab";
 // TODO: Добавить иконку сортировки
 // TODO: Заняться неймингом css
 // TODO: Проверить сортировку по Div'ам
-// TODO: Вёрстка
+
+
 
 function createStatsTab(tour) {
     const statsTab = []
