@@ -19,7 +19,7 @@ const MixStats = ({onTeamPick}) => {
     const [stats, setStats] = React.useState([]);
 
     useEffect(() => {
-        fetch('../MIX_2022/Stats.json')
+        fetch('./MIX_2022/Stats.json')
             .then(response => response.json())
             .then(result => setStats(result))
             .catch(error => console.error('Error fetching data:', error));
