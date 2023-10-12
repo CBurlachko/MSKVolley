@@ -19,13 +19,13 @@ const MixTournament = ({ onMatchDayPick, onTeamPick }) => {
     const [tournamentMatches, setTournamentMatches] = React.useState([]);
 
     React.useEffect(() => {
-        fetch('./MIX_2022/Main.json')
+        fetch('../MIX_2022/Main.json')
             .then(response => response.json())
             .then(result => setTournamentPages(result))
             .catch(error => console.error('Error fetching data:', error));
     }, [])
     React.useEffect(() => {
-        fetch('./MIX_2022/Matches.json')
+        fetch('../MIX_2022/Matches.json')
             .then(response => response.json())
             .then(result => setTournamentMatches(result))
             .catch(error => console.error('Error fetching data:', error));
