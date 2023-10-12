@@ -21,7 +21,7 @@ function App() {
     const [teamInfo, setTeamInfo] = React.useState([]);
 
     useEffect(() => {
-        fetch('../MIX_2022/Stats.json')
+        fetch('https://cburlachko.github.io/MSKVolley/MIX_2022/Stats.json')
             .then(response => response.json())
             .then(result => setTeamInfo(result))
             .catch(error => console.error('Error fetching data:', error));
