@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.010f7eba.css",
-    "main.js": "/static/js/main.74a36d05.js",
-    "static/media/Logo2.png": "/static/media/Logo2.8c1a765425b8421100c6.png",
-    "static/media/PortraitMale.png": "/static/media/PortraitMale.c7be76e4bcec45e99a9b.png",
-    "static/media/Logo1.png": "/static/media/Logo1.6b228a17011f09f4c4ef.png",
-    "static/media/TL1.jpg": "/static/media/TL1.0fcb1f35a4643f519b3d.jpg",
-    "index.html": "/index.html",
-    "main.010f7eba.css.map": "/static/css/main.010f7eba.css.map",
-    "main.74a36d05.js.map": "/static/js/main.74a36d05.js.map"
+    "main.css": "/MSKVolley/static/css/main.010f7eba.css",
+    "main.js": "/MSKVolley/static/js/main.e016c428.js",
+    "static/media/Logo2.png": "/MSKVolley/static/media/Logo2.8c1a765425b8421100c6.png",
+    "static/media/PortraitMale.png": "/MSKVolley/static/media/PortraitMale.c7be76e4bcec45e99a9b.png",
+    "static/media/Logo1.png": "/MSKVolley/static/media/Logo1.6b228a17011f09f4c4ef.png",
+    "static/media/TL1.jpg": "/MSKVolley/static/media/TL1.0fcb1f35a4643f519b3d.jpg",
+    "index.html": "/MSKVolley/index.html",
+    "main.010f7eba.css.map": "/MSKVolley/static/css/main.010f7eba.css.map",
+    "main.e016c428.js.map": "/MSKVolley/static/js/main.e016c428.js.map"
   },
   "entrypoints": [
     "static/css/main.010f7eba.css",
-    "static/js/main.74a36d05.js"
+    "static/js/main.e016c428.js"
   ]
 }
