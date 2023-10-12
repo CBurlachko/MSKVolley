@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 
-import stats from '../../public/MIX_2022/Stats.json'
+// import stats from '../MIX_2022/Stats.json'
 
 import TournamentTabs from "../TournamentTours/ToursTab";
 
@@ -13,32 +13,41 @@ import TournamentTabs from "../TournamentTours/ToursTab";
 // TODO: Проверить сортировку по Div'ам
 
 
-
-function createStatsTab(tour) {
-    const statsTab = []
-    stats
-        .filter(team => team.div.length >= tour)
-        .filter(team => team.div[tour - 1] !== "")
-        .map(team => {
-            statsTab.push({
-                name: team.name,
-                id: team.id,
-                div: team.div[tour - 1],
-                win: team.win[tour - 1],
-                lose: team.lose[tour - 1],
-                games: team.games[tour - 1],
-                points: team.points[tour - 1],
-                pos: team.pos[tour - 1],
-            })
-        })
-    return statsTab
-}
-
-let statsTab = createStatsTab(10)
-
 const MixStats = ({onTeamPick}) => {
-    const [activeTab, setActiveTab] = useState(10)    // Выбираем активным последний тур
+    const [activeTab, setActiveTab] = useState(10)
     const [sortedField, setSortedField] = useState({ key: "position", direction: "ascending" })
+    const [stats, setStats] = React.useState([]);
+
+    useEffect(() => {
+        fetch('../MIX_2022/Stats.json')
+            .then(response => response.json())
+            .then(result => setStats(result))
+            .catch(error => console.error('Error fetching data:', error));
+    }, [])
+
+    console.log(stats, 'Update')
+
+    function createStatsTab(tour) {
+        const statsTab = []
+        stats
+            .filter(team => team.div.length >= tour)
+            .filter(team => team.div[tour - 1] !== "")
+            .map(team => {
+                statsTab.push({
+                    name: team.name,
+                    id: team.id,
+                    div: team.div[tour - 1],
+                    win: team.win[tour - 1],
+                    lose: team.lose[tour - 1],
+                    games: team.games[tour - 1],
+                    points: team.points[tour - 1],
+                    pos: team.pos[tour - 1],
+                })
+            })
+        return statsTab
+    }
+
+    let statsTab = createStatsTab(10)
 
     const requestSort = key => {
         let direction = 'ascending';

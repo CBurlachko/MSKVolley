@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Routes, Route, Link } from "react-router-dom";
 
 import "./scss/app.scss";
 
-import teamInfo from '../../public/MIX_2022/Stats.json'
+// import teamInfo from '../../public/MIX_2022/Stats.json'
 
 import MixTournament from "./TournamentTours/MixTournament";
 import MixTeams from "./TournamentTeams/MixTeams";
@@ -17,6 +17,15 @@ function App() {
 
     const [matchDay, setMatchDay] = React.useState(null)
     const [teamPage, setTeamPage] = React.useState(null)
+
+    const [teamInfo, setTeamInfo] = React.useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:3000/MIX_2022/Stats.json')
+            .then(response => response.json())
+            .then(result => setTeamInfo(result))
+            .catch(error => console.error('Error fetching data:', error));
+    }, [])
 
 
     // TODO: Страница Main - добить вёрстку

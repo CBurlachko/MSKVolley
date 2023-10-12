@@ -1,25 +1,42 @@
 import React from "react"
 import { Link } from 'react-router-dom';
 
-import tournamentPages from '../../public/MIX_2022/Main.json'
-import tournamentMatches from '../../public/MIX_2022/Matches.json'
+// import tournamentPages from '../../public/MIX_2022/Main.json'
+// import tournamentMatches from '../../public/MIX_2022/Matches.json'
 
 import TournamentTabs from "./ToursTab";
 
 // TODO: Поднять useState выбранного тура на уровень приложения
-// TODO: Найти способ динамически подгружать страницыmatchPages
+// TODO: Найти способ динамически подгружать страницы matchPages
 
-const getMatchPage = (id) => {
-    for (let match of matchPage) {
-        if (match.id === id) return match;
-    }
-    return matchPage[0];
-}
+let tourPage = [];
+let matchPage = [];
 
-let tourPage = tournamentPages.at(-1)
-let matchPage = tournamentMatches.at(-1)
+
 const MixTournament = ({ onMatchDayPick, onTeamPick }) => {
     const [activeTab, setActiveTab] = React.useState(10);
+    const [tournamentPages, setTournamentPages] = React.useState([]);
+    const [tournamentMatches, setTournamentMatches] = React.useState([]);
+
+    React.useEffect(() => {
+        fetch('../MIX_2022/Main.json')
+            .then(response => response.json())
+            .then(result => setTournamentPages(result))
+            .catch(error => console.error('Error fetching data:', error));
+    }, [])
+    React.useEffect(() => {
+        fetch('../MIX_2022/Matches.json')
+            .then(response => response.json())
+            .then(result => setTournamentMatches(result))
+            .catch(error => console.error('Error fetching data:', error));
+    }, [])
+
+    const getMatchPage = (id) => {
+        for (let match of matchPage) {
+            if (match.id === id) return match;
+        }
+        return matchPage[0];
+    }
 
     const tabPicker = (tour) => {
         setActiveTab(tour);
